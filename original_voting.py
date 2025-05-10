@@ -39,7 +39,7 @@ def main():
             print('Voted for Bianca')
         elif user_vote == 2:
             can2 = can2 + 1
-            print('voted for Edward')
+            print('Voted for Edward')
         elif user_vote == 3:
             can3 = can3 + 1
             print('Voted for Felicia')
