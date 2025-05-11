@@ -1,6 +1,6 @@
 from ballot_logic import *
 
-class logic(QMainWindow, Ui_MainWindow):
+class Logic(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
