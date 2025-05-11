@@ -31,19 +31,6 @@ class VotingWindow(QMainWindow, Ui_input_voting_terminal):
         voterid_text = self.voterid_input.text().strip()
         candidate = 0
 
-        if self.radio_can1.isChecked():
-            candidate = 'Bianca'
-        elif self.radio_can2.isChecked():
-            candidate = 'Jack'
-        elif self.radio_can3.isChecked():
-            candidate = 'Nicole'
-        elif self.radio_custom.isChecked():
-            custom_candidate(self.custom_input.strip(), candidate, voterid_text)
-        else:
-            self.error_candidate_name_label.setText('error: select candidate')
-            return
-
-
         try:
 
             voterid_text = int(voterid_text)
@@ -56,7 +43,24 @@ class VotingWindow(QMainWindow, Ui_input_voting_terminal):
             self.error_candidate_name_label.setText("Error: Voter ID must be a number.")
             return
 
+        if self.radio_can1.isChecked():
+            candidate = 'Bianca'
+        elif self.radio_can2.isChecked():
+            candidate = 'Jack'
+        elif self.radio_can3.isChecked():
+            candidate = 'Nicole'
+        elif self.radio_custom.isChecked():
+            self.custom_candidate(self.custom_input.strip(), candidate, voterid_text)
+        else:
+            self.error_candidate_name_label.setText('error: select candidate')
+            return
 
         self.error_candidate_name_label.setText(f'Voter (ID:{voterid_text}) voted for {candidate}')
 
+    def custom_candidate(self, custom_name, candidate_status, voterid):
+        if candidate_status != 0:
+            self.error_candidate_name_label.setText('error: Select only 1 option')
+            return
+        else:
+            self.error_candidate_name_label.setText(f'Voter (ID:{voterid}) voted for {custom_name}')
 
