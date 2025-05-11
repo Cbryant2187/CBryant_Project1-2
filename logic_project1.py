@@ -1,4 +1,5 @@
-from ballot_logic import *
+from PyQt6.QtWidgets import *
+from gui_project1 import *
 
 class Logic(QMainWindow, Ui_MainWindow):
     def __init__(self):
@@ -17,6 +18,13 @@ class Logic(QMainWindow, Ui_MainWindow):
         self.hide()
 
 
+class VotingWindow(QMainWindow, Ui_input_voting_terminal):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+
+        self.submit_button.clicked.connect(self.check_submission)
 
 
+    def check_submission(self):
 

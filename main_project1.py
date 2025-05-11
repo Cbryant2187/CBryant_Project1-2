@@ -1,4 +1,3 @@
-from gui_project1 import *
 from logic_project1 import *
 
 def main():
