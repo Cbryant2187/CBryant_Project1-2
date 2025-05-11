@@ -29,6 +29,7 @@ class VotingWindow(QMainWindow, Ui_input_voting_terminal):
     def check_submission(self):
         self.error_candidate_name_label.setText("")
         voterid_text = self.voterid_input.text().strip()
+        candidate = 0
 
         if self.radio_can1.isChecked():
             candidate = 'Bianca'
@@ -37,23 +38,25 @@ class VotingWindow(QMainWindow, Ui_input_voting_terminal):
         elif self.radio_can3.isChecked():
             candidate = 'Nicole'
         elif self.radio_custom.isChecked():
-            custom_candidate(self.custom_input.strip())
+            custom_candidate(self.custom_input.strip(), candidate, voterid_text)
         else:
             self.error_candidate_name_label.setText('error: select candidate')
             return
 
+
         try:
+
             voterid_text = int(voterid_text)
             if voterid_text < 10000 or voterid_text > 99999:
                 self.error_candidate_name_label.setText("Error: Voter ID must be 5 digits.")
                 return
+
         except ValueError:
+
             self.error_candidate_name_label.setText("Error: Voter ID must be a number.")
             return
 
-        self.error_candidate_name_label.setText(f'Voter ID:{voterid_text} voted for {candidate}')
 
+        self.error_candidate_name_label.setText(f'Voter (ID:{voterid_text}) voted for {candidate}')
 
-
-def custom_candidate(custom_name):
 
