@@ -27,4 +27,33 @@ class VotingWindow(QMainWindow, Ui_input_voting_terminal):
 
 
     def check_submission(self):
+        self.error_candidate_name_label.setText("")
+        voterid_text = self.voterid_input.text().strip()
+        candidate = 0
 
+        if self.radio_can1.ischecked():
+            candidate = 'Bianca'
+        elif self.radio_can2.ischecked():
+            candidate = 'Jack'
+        elif self.radio_can3.ischecked():
+            candidate = 'Nicole'
+        elif self.radio_custom.ischecked:
+            custom_candidate(self.custom_input)
+        else:
+            self.error_candidate_name_label.setText('error: select candidate')
+            return
+
+        try:
+            if voterid_text < 9999 or voterid_text > 100000:
+                print('error: enter valid voter ID')
+                print('ex: 12345')
+                return
+            else:
+                print(f'Voter {voterid_text} voted for {candidate}.')
+        except:
+            self.error_candidate_name_label.setText('error: enter valid input')
+
+
+
+def custom_candidate():
+    print('test')
